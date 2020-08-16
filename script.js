@@ -9,8 +9,16 @@ $("#translate-button").on("click", () => {
     const inputText = $("#inputText").val();
     // get the language name from selected dropdown
     const langName = $("#langVal option:selected").text();
+    // validate there is input to translate
+    if ($("#inputText").val() === "") {
+        // make a modal appear
+        $("#myModal").modal();
+    } 
+    // if we do have text then we translate
+    if ($("#inputText").val() !== "") {
     // call function for API call
-    translateCall(selLanguage, inputText);
+        translateCall(selLanguage, inputText);
+    }
     
 }); // closing brackets for translate button
 
