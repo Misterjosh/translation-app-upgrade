@@ -7,9 +7,11 @@ $("#translate-button").on("click", () => {
     const selLanguage = $("#langVal").val();
     // get the input text value 
     const inputText = $("#inputText").val();
+    // get the language name from selected dropdown
+    const langName = $("#langVal option:selected").text();
     // call function for API call
     translateCall(selLanguage, inputText);
-
+    
 }); // closing brackets for translate button
 
 // clear all button
