@@ -3,6 +3,9 @@ $(document).ready(() => {
 
 // Translate button functionality
 $("#translate-button").on("click", () => {
+    // clear books info
+    $("#book-section-header").empty();
+    $(".books").empty();
     // get the selected language value
     const selLanguage = $("#langVal").val();
     // get the input text value 
@@ -30,6 +33,9 @@ $("#clear-button").on("click", () => {
     $("#inputText").val("");
     // clear the translation
     $("#outputText").val("");
+    // clear the books
+    $("#book-section-header").empty();
+    $(".books").empty();
 
 }); // closing bracket for clear button
 
@@ -62,7 +68,8 @@ booksCall = (language) => {
         // take the paramter and response then build a card section
         // make a header from function parameter
         $("<h3>").text("Interested in learning more about " + language + "?").appendTo("#book-section-header");
-        // make 6 books from the response
+        $("<h5>").text("(If empty, no learning books with cover images)").appendTo("#book-section-header");
+        // make up to 6 cards of books from the response
         for (var i = 0; i < 6; i++) {
             // defining card components
             var card = $("<div>").addClass("card col-lg-2 col-sm-4 col-xs-6");
