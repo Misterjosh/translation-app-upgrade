@@ -21,6 +21,17 @@ $("#clear-button").on("click", () => {
 
 }); // closing bracket for clear button
 
+// copy text button
+$("#copy-button").on("click", () => {
+    // validate if there is anything to copy
+    const copyText = $("#outputText");
+    if (copyText !== "") {
+        copyText.select();
+        document.execCommand("copy");
+    }
+
+}); // closing bracket for copy button
+
 // function to make api call
 translateCall = (language, text) => {
     $.ajax({
