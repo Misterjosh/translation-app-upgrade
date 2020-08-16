@@ -16,8 +16,10 @@ $("#translate-button").on("click", () => {
     } 
     // if we do have text then we translate
     if ($("#inputText").val() !== "") {
-    // call function for API call
+        // call function for translation API call
         translateCall(selLanguage, inputText);
+        // call function for books API call
+        booksCall(langName);
     }
     
 }); // closing brackets for translate button
@@ -49,6 +51,35 @@ translateCall = (language, text) => {
         method: "GET"
     }).then((response) => $("#outputText").val(JSON.parse(JSON.stringify(response)).text));
 
-}; // closing bracket for makeCall
+}; // closing bracket for translateCall
+
+// function for getting books about the language
+booksCall = (language) => {
+    $.ajax({
+        url:  "https://www.googleapis.com/books/v1/volumes?q=learning" + language,
+        method: "GET"
+    }).then((response) => {
+        // take the paramter and response then build a card section
+        // make a header from function parameter
+        $("<h3>").text("Interested in learning more about " + language + "?").appendTo("#book-section-header");
+        // make 6 books from the response
+        for (var i = 0; i < 6; i++) {
+            // defining card components
+            var card = $("<div>").addClass("card col-lg-2 col-sm-4 col-xs-6");
+            var cardBody = $("<div>").addClass("card-body d-flex flex-column justify-content-start align-items-stretch");
+            var thumbnail = $("<img>").addClass("card-img-top").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+            var bookTitle = $("<h5>").addClass("card-title").text(response.items[i].volumeInfo.title);
+            var preview = $("<a>").addClass("card-text").text("Preview");
+            // build the card
+            $(preview).attr({"href": response.items[i].volumeInfo.previewLink, "target": "_blank"});
+            $(cardBody).append(bookTitle, preview);
+            $(card).append(thumbnail, cardBody);
+            $(".books").append(card);
+
+        }; // closing bracket of for loop
+
+    }); // end of .then()
+
+}; // closing bracket for booksCall
 
 }); // closing brackets for document.ready
