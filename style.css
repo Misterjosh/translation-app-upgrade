@@ -15,10 +15,6 @@ h2 {
     text-shadow: 2px 2px 2px black;
 }
 
-h3 {
-    color: royalblue;
-    text-shadow: 1px 1px black;
-}
 /* Header */
 header {
     position: absolute;
@@ -45,6 +41,26 @@ button {
     font-size: 24px;
     text-align: center;
     font-weight: 500;
+}
+
+button:hover {
+    box-shadow: 5px 5px 5px black;
+}
+
+#translate-button {
+    background-color: darkmagenta;
+    color: white;
+    border-radius: 50px;
+    text-shadow: 2px 2px 1px black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#copy-button {
+    background-color: darkmagenta;
+    color: white;
+    border-radius: 50px;
+    text-shadow: 2px 2px 1px black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #clear-button {
